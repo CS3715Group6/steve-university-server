@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+#student_data {
+		float: left;
+		margin: 0px 10px;
+} 
+
+#students {
+		background-color: #EEDEFF;
+		padding: 20px 20px 20px 110px;
+		margin: 90px 470px 40px 90px;
+		border: 2px dashed #A04AFF;
+		background-image: url(../Images/logo.jpg);
+		background-repeat: no-repeat;
+		background-position: top left;
+}
+
+.thumbnail {
+		text-align: center;
+}

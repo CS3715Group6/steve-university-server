@@ -1,0 +1,385 @@
+@charset "UTF-8";	
+/*Mobile Phones in Portrait*/
+@media screen and (max-device-width : 481px) and (orientation : portrait) {
+	
+	body {
+		background-color: white;
+		font-family: Georgia, "Times New Roman", Times, serif;
+		font-size: 200%;
+		margin: 10px;
+	}
+	
+	header {
+		background-color: grey;
+		padding: 20px;
+		margin-bottom: 20px;
+	}
+	
+	header h1 {
+		text-align: center;
+	}
+	
+	#contact {
+		float: right;
+	}
+	
+	#aside {
+		font-size: 200%;
+		display: block;
+		float:none;
+		background-color: lightgrey;
+		width:auto;
+		padding:10px 10px 10px 10px;
+		margin:10px 10px 10px 10px;	
+	}
+	
+	#aside li{
+		margin: 1em; 
+		padding: 0em;
+	}
+	
+	#aside h1{
+		text-align: center;
+	}
+	
+	#campus {
+		display:block;
+		float:none;
+		font-size: 200%;
+		line-height: 1em;
+	}
+	
+	footer{
+		background-color: grey;
+		clear:both;
+		text-align: center;
+		padding:20px;
+		margin-top:20px;
+	}
+	form {
+ 	  	width: 100%;
+	   	height: 100%;
+ 	  	margin: auto;
+	   	position: relative;
+	 }
+ 	input {
+	   	width: 100%;
+   		height: 100%;
+	 }
+	
+	nav {
+	    background-color: grey;
+	    overflow: hidden;
+	}
+
+	nav a {
+	    float: left;
+	    display: block;
+	    color: black;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	    font-size: 17px;
+	}
+
+
+	nav a:hover {
+	    background-color: #ddd;
+	    color: black;
+	}
+
+
+	nav a.active {
+	    background-color: #4CAF50;
+	    color: block;
+	}
+}
+
+/*Mobile Phones in landscape. Normally, I would just have the page use the tablet css, 
+but since we are required to change the appearence our page for each device, 
+I've added this to keep the look consistent across mobile whether in portrait or landscape*/
+@media screen and (max-device-width : 1281px) and (orientation : landscape){
+	body {
+		background-color: white;
+		font-family: Georgia, "Times New Roman", Times, serif;
+		font-size: 120%;
+		margin: 10px;
+	}
+	
+	header {
+		background-color: grey;
+		padding: 20px;
+		margin-bottom: 20px;
+	}
+	
+	header h1 {
+		text-align: center;
+	}
+	
+	#contact {
+		float: right;
+	}
+	
+	#aside {
+		font-size: 120%;
+		display: block;
+		float:none;
+		background-color: lightgrey;
+		width:auto;
+		padding:10px 10px 10px 10px;
+		margin:10px 10px 10px 10px;	
+	}
+	
+	#aside li{
+		margin: 1em; 
+		padding: 0em;
+	}
+	
+	#aside h1{
+		text-align: center;
+	}
+	
+	#campus {
+		display:block;
+		float:none;
+		font-size: 120%;
+		line-height: 1em;
+	}
+	
+	footer{
+		background-color: grey;
+		clear:both;
+		text-align: center;
+		padding:20px;
+		margin-top:20px;
+	}
+	form {
+ 	  	width: 100%;
+	   	height: 100%;
+ 	  	margin: auto;
+	   	position: relative;
+	 }
+ 	input {
+	   	width: 100%;
+   		height: 100%;
+ 	}
+
+	nav {
+	    background-color: grey;
+	    overflow: hidden;
+	}
+
+	nav a {
+	    float: left;
+	    display: block;
+	    color: black;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	    font-size: 17px;
+	}
+
+	nav a:hover {
+	    background-color: #ddd;
+	    color: black;
+	}
+
+
+	nav a.active {
+	    background-color: #4CAF50;
+	    color: block;
+	}
+}
+
+/*Tablets*/
+@media screen and (min-device-width : 961px){
+	body {
+		background-color: #e6e6ff;
+		font-family: Times, Courier, Verdana, serif;
+		margin: 50px;
+	}
+	
+	header {
+		background-color: #b3b3ff;
+		padding: 20px;
+		margin-bottom: 20px;
+	}
+	
+	header h1 {
+		text-align: center;
+	}
+	
+	#contact {
+		float: right;
+	}
+	
+	#aside {
+		display:block;
+		font-size: small;
+		float: left;
+		background-color: #ccccff;
+		width:20%;
+		padding:10px;
+		margin: 20px 20px 20px 0px;
+	}
+	
+	#aside li{
+		margin: 0em; 
+		padding: 0em;
+	}
+	
+	#aside h1{
+		text-align: center;
+	}
+	
+	#campus {
+		display: block;
+		line-height: 1.5em;
+	}
+	
+	footer{
+		background-color: #b3b3ff;
+		clear:both;
+		text-align: center;
+		padding:20px;
+		margin-top:20px;
+	}
+	form {
+ 	  	width: 100%;
+	   	height: 100%;
+ 	  	margin: auto;
+	   	position: relative;
+	 }
+ 	input {
+	   	width: 100%;
+   		height: 100%;
+ 	}
+	 nav {
+	    background-color: #b3b3ff;
+	    overflow: hidden;
+	}
+
+	nav a {
+	    float: left;
+	    display: block;
+	    color: black;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	    font-size: 17px;
+	}
+
+	nav a:hover {
+	    background-color: #ddd;
+	    color: black;
+	}
+
+	nav a.active {
+	    background-color: #4CAF50;
+	    color: block;
+	}
+}
+
+/*Desktop */
+@media screen and (min-device-width : 1281px){
+	body {
+		background-color: #b5a789;
+		font-family: Georgia, Palatino, Times, serif;
+		margin: 50px;
+	}
+	
+	header {
+		background-color: #9d8a62;
+		padding: 20px;
+		margin-bottom: 20px;
+	}
+	
+	header h1 {
+		text-align: center;
+	}
+	
+	#contact {
+		float: right;
+	}
+	
+	#aside {
+		display:block;
+		font-size: small;
+		float: left;
+		background-color: #d8d0c0;
+		width:20%;
+		padding:10px;
+		margin: 20px 20px 20px 0px;
+	}
+	
+	#aside li{
+		margin: 0em; 
+		padding: 0em;
+	}
+	
+	#aside h1{
+		text-align: center;
+	}
+	
+	#campus {
+		display: block;
+		line-height: 1.5em;
+	}
+	
+	#northern {
+		float: right;
+		margin:5px;
+	}
+	#southern{
+		float :left;
+		margin:5px;
+	}
+	#eastern {
+		float: right;
+		margin:5px;
+	}
+	
+	footer{
+		background-color: #9d8a62;
+		clear:both;
+		text-align: center;
+		padding:20px;
+		margin-top:20px;
+	}
+	form {
+ 	  	width: 100%;
+	   	height: 100%;
+ 	  	margin: auto;
+	   	position: relative;
+	 }
+ 	input {
+	   	width: 100%;
+   		height: 100%;
+	 }
+ 	
+	nav {
+	    background-color: #9d8a62;
+	    overflow: hidden;
+	}
+
+	nav a {
+	    float: left;
+	    display: block;
+	    color: black;
+	    text-align: center;
+	    padding: 14px 16px;
+	    text-decoration: none;
+	    font-size: 17px;
+	}
+
+	nav a:hover {
+	    background-color: #ddd;
+	    color: black;
+	}
+
+	nav a.active {
+	    background-color: #4CAF50;
+	    color: block;
+	}
+	
+}
