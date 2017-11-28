@@ -6,11 +6,34 @@
  * courseArray stores the keys for the actual course registration data
  * @author Alex Gillis 
  */
-
-//Called on student.html onload
-function displayRegisteredCourses(){
+function studentChanged(){
 	
-	var courseArray = getCourseArray();
+	var stuIDSelect = document.getElementById("studentNumber");
+	var stuNum = stuIDSelect.options[stuIDSelect.selectedIndex].text;
+	
+	getCourseInfoFromServer(stuNum);
+}
+
+function getCourseInfoFromServer(stuNum){
+	
+	var url = "" + stuNum + ".json";
+	var request = new XMLHttpRequest();
+	request.open("GET",url);
+	request.onload = function() {
+		
+		if(request.status == 200){
+			buildCourseTable(request.responseText);
+		}
+		else{
+			removeOldTable();
+		}
+	};
+	request.send(null);
+}
+
+function removeOldTable(){
+	
+	//var courseArray = getCourseArray();
 	var courseTbl = document.getElementById("studentCourseList");
 
 	//Destory Previous Table rows
@@ -29,25 +52,58 @@ function displayRegisteredCourses(){
 		headerRow.appendChild(headerth);
 	}
 	courseTbl.appendChild(headerRow);
+	
+	return courseTbl;
+}
+function buildCourseTable(courseData){
+	
+	var allInfo = JSON.parse(courseData);
 
+	var courseTbl = removeOldTable();
+	
 	//Add Course Entries to the table
-	for(var i = 0; i < courseArray.length; i++){
+	if(!Array.isArray(allInfo)){
 		var courseRow = document.createElement("tr");
-		var key = courseArray[i];
-		var courseInfo = JSON.parse(localStorage[key]);
+		var courseInfo = allInfo;
 		
-
 		var course_td1 = document.createElement('td');
-		var txtNode1 = document.createTextNode(courseInfo.courseNum);
+		var txtNode1 = document.createTextNode(courseInfo.courseSelect);
 		course_td1.appendChild(txtNode1);
 		courseRow.appendChild(course_td1);
 		var course_td2 = document.createElement('td');
-		var txtNode2 = document.createTextNode(courseInfo.sectionNum);
+		var txtNode2 = document.createTextNode(courseInfo.sectionSelect);
 		course_td2.appendChild(txtNode2);
 		courseRow.appendChild(course_td2);
 
 		courseTbl.appendChild(courseRow);
-	}	
+	}
+	else{
+		for(var i = 0; i < allInfo.length; i++){
+			var courseRow = document.createElement("tr");
+			var courseInfo = allInfo[i];
+			
+			var course_td1 = document.createElement('td');
+			var txtNode1 = document.createTextNode(courseInfo.courseSelect);
+			course_td1.appendChild(txtNode1);
+			courseRow.appendChild(course_td1);
+			var course_td2 = document.createElement('td');
+			var txtNode2 = document.createTextNode(courseInfo.sectionSelect);
+			course_td2.appendChild(txtNode2);
+			courseRow.appendChild(course_td2);
+	
+			courseTbl.appendChild(courseRow);
+	
+		}	
+	}
+}
+
+//Called on student.html onload
+function displayRegisteredCourses(courseData){
+	
+	var stuIDSelect = document.getElementById("studentNumber");
+	var stuNum = stuIDSelect.options[stuIDSelect.selectedIndex].text;
+	getCourseInfoFromServer(stuNum);
+
 }
 
 function registerBtnClicked(){
@@ -67,13 +123,13 @@ function registerBtnClicked(){
 
 function stuPageRegisterBtn(){
 	
-	var courseTxt = document.getElementById("courseNum").value;
-	var sectionTxt = document.getElementById("timeSlot").value;
-
-	var courseInfo = new course(courseTxt,sectionTxt);
-	
-	saveCourseInfo(courseInfo);
-	displayRegisteredCourses();
+//	var courseTxt = document.getElementById("courseNum").value;
+//	var sectionTxt = document.getElementById("timeSlot").value;
+//
+//	var courseInfo = new course(courseTxt,sectionTxt);
+//	
+//	saveCourseInfo(courseInfo);
+//	displayRegisteredCourses();
 }
 
 function saveCourseInfo(course){

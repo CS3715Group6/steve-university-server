@@ -11,12 +11,11 @@ var html = "/.html";
 function route(handle, pathname, response, request, postData){
 	
 	console.log("Routing Pathname: " + pathname + "  ||  ");
-	
+
 	if(typeof handle[pathname] === 'function'){
 		handle[pathname](response, postData);		
 	}
 	else if(/^\/[a-zA-Z0-9\/]*.html$/.test(request.url.toString())){
-		//handle[html](response, request.url.toString().substring(1), "text/html");
 		handle[html](response, request.url.toString().substring(1), "text/html");
 	}
 	else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
@@ -27,6 +26,9 @@ function route(handle, pathname, response, request, postData){
 	}
 	else if(/^\/[a-zA-Z0-9\-\_/]*.js$/.test(request.url.toString())){
 		handle[js](response, request.url.toString().substring(1), "application/javascript");
+	}
+	else if(/^\/[a-zA-Z0-9\-\_\./]*.json$/.test(request.url.toString())){
+		handle[js](response, request.url.toString().substring(1), "application/json");
 	}
 	else {
 		console.log("No Request Handler.");

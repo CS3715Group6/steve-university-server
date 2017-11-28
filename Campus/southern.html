@@ -276,59 +276,49 @@
 		<br>
 	<section id="register">
 		<h2>Register for a course</h2>
-		<form action="../registered.html" method="post">
+		<form action="/post" method="post">
 			<fieldset>
 				<legend>Course Registration</legend>
 				<br>
+				Select Student:
+				<select id="studentNumber" name="studentSelect">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>	
+				</select>
+				<br>
 				Select Course:
-				<select id="courseNumber">
-					<option value="courseName">Math 1001</option>
-					<option value="courseName">Math 1021</option>
-					<option value="courseName">Math 1030</option>
-					<option value="courseName">Math 1040</option>
-					<option value="courseName">Math 1050</option>
-					<option value="courseName">Comp 1041</option>
-					<option value="courseName">Math 1070</option>
-					<option value="courseName">Math 1080</option>
-					<option value="courseName">Math 1090</option>
-					<option value="courseName">Math 1100</option>
-					<option value="courseName">CS 1000</option>
-					<option value="courseName">CS 1020</option>
-					<option value="courseName">CS 1030</option>
-					<option value="courseName">CS 1040</option>
-					<option value="courseName">CS 1050</option>
-					<option value="courseName">CS 1100</option>
-					<option value="courseName">CS 1200</option>
-					<option value="courseName">CS 1300</option>
-					<option value="courseName">CS 1400</option>
-					<option value="courseName">BIO 101</option>
-					<option value="courseName">BIO 301</option>
-					<option value="courseName">BIO 401</option>
-					<option value="courseName">BIO 500</option>
-					<option value="courseName">BIO 1002</option>
-					<option value="courseName">BIO 1400</option>
-					<option value="courseName">G 1020</option>
-					<option value="courseName">G 101</option>
-					<option value="courseName">G 102</option>
-					<option value="courseName">G 103</option>
-					<option value="courseName">G 201</option>
-					<option value="courseName">G 302</option>		
+				<select id="courseNumber" name="courseSelect">
+					<option value="Math 1001">Math 1001</option>
+					<option value="Math 1021">Math 1021</option>
+					<option value="Comp 1041">Comp 1041</option>
+					<option value="Math 1070">Math 1070</option>
+					<option value="Math 1080">Math 1080</option>
+					<option value="CS 1000">CS 1000</option>
+					<option value="CS 1020">CS 1020</option>
+					<option value="CS 1400">CS 1400</option>
+					<option value="BIO 101">BIO 101</option>
+					<option value="BIO 301">BIO 301</option>
+					<option value="BIO 401">BIO 401</option>
+					<option value="G 1020">G 1020</option>
+					<option value="G 101">G 101</option>
+					<option value="G 302">G 302</option>		
 				</select>
 				
-				<select id="section">
-					<option value="sectionNum">Section 001</option>
-					<option value="sectionNum">Section 002</option>
-					<option value="sectionNum">Section 003</option>
-					<option value="sectionNum">Section 004</option>
-					<option value="sectionNum">Section 005</option>
-					<option value="sectionNum">Section 006</option>
-					<option value="sectionNum">Section 007</option>
-					<option value="sectionNum">Section 008</option>
-					<option value="sectionNum">Section 009</option>
+				<select id="section" name="sectionSelect">
+					<option value="Section 001">Section 001</option>
+					<option value="Section 002">Section 002</option>
+					<option value="Section 003">Section 003</option>
 				</select>
 				<br>
-				<br>
-				<input type="button" value="Register" id="registerBtn">
+				<input type="submit" value="Register" id="registerBtn">
 				<br>
 			</fieldset>
 		</form>

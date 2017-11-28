@@ -13,19 +13,27 @@ function handleButtonClick(){
 }
 function getMyLocation() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(displayLocation);
+		displayLocation(new coordinates(48.614518, -53.713885));
+		//navigator.geolocation.getCurrentPosition(displayLocation);
 	} else {
 			alert("Geolocation not supported");
 	}
 }
+
+function coordinates(lat, long){
+	this.latitude = lat;
+	this.longitude = long;
+}
 	
-function displayLocation(position) {
-	var latitude = position.coords.latitude;
-	var longitude = position.coords.longitude;
+function displayLocation(coords) {
+	
+	var latitude = coords.latitude;
+	var longitude = coords.longitude;
+
 	var div = document.getElementById("location");
 	div.innerHTML = "You are at Latitude: " + latitude + ", Longitude: " + longitude;
 		
-	var km = getDistance(position.coords, ourCoords);
+	var km = getDistance(coords, ourCoords);
 	var distance = document.getElementById("distance");
 	distance.innerHTML = "You are " + km + " km from Steve University";
 	myMap(latitude, longitude);
@@ -101,3 +109,9 @@ function getRoute(directionsService, directionsDisplay, pointA, pointB) {
 		});
 }
 initMap();
+
+
+
+
+
+
