@@ -8,16 +8,15 @@ var jpg = "/.jpg";
 var js = "/.js";
 var html = "/.html";
 
-function route(handle, pathname, response, request){
+function route(handle, pathname, response, request, postData){
 	
-	console.log("Routing " + pathname);
+	console.log("Routing Pathname: " + pathname + "  ||  ");
 	
 	if(typeof handle[pathname] === 'function'){
-		console.log("Calling handle " + pathname);
-		handle[pathname](response);		
+		handle[pathname](response, postData);		
 	}
 	else if(/^\/[a-zA-Z0-9\/]*.html$/.test(request.url.toString())){
-		console.log("Calling handle " + pathname);
+		//handle[html](response, request.url.toString().substring(1), "text/html");
 		handle[html](response, request.url.toString().substring(1), "text/html");
 	}
 	else if(/^\/[a-zA-Z0-9\/]*.css$/.test(request.url.toString())){
