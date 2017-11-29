@@ -30,6 +30,7 @@ function start(response){
 function events(response, postData){
 	
 	//Save event data to JSON file
+	//Also give a generic response
 }
 
 function removeCourse(response, postData){
@@ -78,7 +79,7 @@ function removeCourse(response, postData){
 	});
 	
 	response.writeHead(200, {"Content-Type": "text/plain"});
-	response.write("The Course has been added to the catalogue. Please hit back on your browser to return to the previous page.");
+	response.write("The Course has been removed from the catalogue. Please hit back on your browser to return to the previous page.");
 	response.end();
 }
 
