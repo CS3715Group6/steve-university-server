@@ -6,9 +6,9 @@
  * catalogueArray stores the keys for the actual course catalogue data.
  * @author Alex Gillis 
  */
+var catalogueEntries;
 
-
-function createRegistrationList(catalogueEntries){ 
+function createRegistrationList(cEntries){ 
 	
 	var courseSelect = document.getElementById("courseNumber");
 	
@@ -18,9 +18,9 @@ function createRegistrationList(catalogueEntries){
 	
 	//Get all courses with no duplicates
 	var coursesNoDupes = [];
-	for(var i = 0; i < catalogueEntries.length; i++){
+	for(var i = 0; i < cEntries.length; i++){
 		
-		var courseNum = catalogueEntries[i].num;
+		var courseNum = cEntries[i].num;
 		if(!coursesNoDupes.includes(courseNum)){
 			coursesNoDupes.push(courseNum);
 		}
@@ -51,7 +51,8 @@ function generateSlots(){
 	
 	var courseSelect = document.getElementById("courseNumber");
 	var selCourse = courseSelect.value;
-	var catalogueEntries = getSortedCatalogueEntries(getCatalogueArray());
+	//var catalogueEntries = getSortedCatalogueEntries(getCatalogueArray());
+	//var catalogueEntries = getCourseData();
 	var slots = []
 	
 	//Find all the slots for the selected course
@@ -75,12 +76,10 @@ function generateSlots(){
 	}
 }
 
-function createCatalogueTable()
+function createCatalogueTable(allCourseEntries)
 {
 	var catalogueTbl = document.getElementById("courses");
-	var catalogueKeys = getCatalogueArray();
-	var allCourseEntries = getSortedCatalogueEntries(catalogueKeys);
-	
+
 	//Destory Previous Table rows
 	while(catalogueTbl.hasChildNodes()){
 		catalogueTbl.removeChild(catalogueTbl.lastChild);
@@ -124,6 +123,24 @@ function compare(entry1,entry2){
 	if(entry1.name.toLowerCase() > entry2.name.toLowerCase())
 		return 1;
 	return 0;
+}
+
+function getCourseData(){
+	
+	var url = "courseData.json";
+	var request = new XMLHttpRequest();
+	request.open("GET",url);
+	request.onload = function() {
+		
+		if(request.status == 200){
+			catalogueEntries = JSON.parse(request.responseText);
+			createCatalogueTable(catalogueEntries);
+		}
+		else{
+			//removeOldTable();
+		}
+	};
+	request.send(null);
 }
 
 function storeHardcodedCourses(){
@@ -269,7 +286,8 @@ function createEntryFromTextbox(){
 function createRemovedCourseTable(){
 	var courseTbl = document.getElementById("preCourses");
 	var courseKeys = getRemovedCoursesArray();
-	var allCourseEntries = getSortedCatalogueEntries(courseKeys);
+	//var allCourseEntries = getSortedCatalogueEntries(courseKeys);
+	var allCourseEntries = catalogueEntries;
 	
 	//Destory Previous Table rows
 	while(courseTbl.hasChildNodes()){

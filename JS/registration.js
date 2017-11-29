@@ -14,21 +14,108 @@ function studentChanged(){
 	getCourseInfoFromServer(stuNum);
 }
 
-function getCourseInfoFromServer(stuNum){
+function createRegistrationList(){
 	
-	var url = "" + stuNum + ".json";
+	var url = "Campus/courseData.json";
 	var request = new XMLHttpRequest();
 	request.open("GET",url);
 	request.onload = function() {
 		
 		if(request.status == 200){
-			buildCourseTable(request.responseText);
+			var catalogueEntries = JSON.parse(request.responseText);
+			createRegList(catalogueEntries);
+		}
+		else{
+			//removeOldTable();
+		}
+	};
+	request.send(null);
+}
+
+function createRegList(cEntries){ 
+	
+	var courseSelect = document.getElementById("courseNumber");
+	
+	while(courseSelect.hasChildNodes()){
+		courseSelect.removeChild(courseSelect.lastChild);
+	}
+	
+	//Get all courses with no duplicates
+	var coursesNoDupes = [];
+	for(var i = 0; i < cEntries.length; i++){
+		
+		var courseNum = cEntries[i].num;
+		if(!coursesNoDupes.includes(courseNum)){
+			coursesNoDupes.push(courseNum);
+		}
+	}
+	
+	//Add unique courses to course select options
+	for(var i = 0; i < coursesNoDupes.length; i++){
+		//Create the course number selection options
+		var courseOption = document.createElement("option");
+		var courseNum = coursesNoDupes[i];
+		var courseTxtNode = document.createTextNode(courseNum);
+		
+		courseOption.appendChild(courseTxtNode);
+		courseOption.setAttribute("value", courseTxtNode.data);
+		courseSelect.appendChild(courseOption);
+	}
+	
+	generateSlots(cEntries);
+}
+
+//Called when the course select options are changed
+function generateSlots(cEntries){
+	
+	var sectionSelect = document.getElementById("section");
+	while(sectionSelect.hasChildNodes()){
+		sectionSelect.removeChild(sectionSelect.lastChild);
+	}
+	
+	var courseSelect = document.getElementById("courseNumber");
+	var selCourse = courseSelect.value;
+	//var catalogueEntries = getSortedCatalogueEntries(getCatalogueArray());
+	//var catalogueEntries = getCourseData();
+	var slots = []
+	
+	//Find all the slots for the selected course
+	for(var i = 0; i < cEntries.length; i++){
+		var courseNum = cEntries[i].num;
+		if(selCourse == courseNum){
+			var courseSect = cEntries[i].slot;
+			slots.push(courseSect);
+		}
+	}
+	
+	//Create the course slots options selection
+	for(var i = 0; i < slots.length; i++){
+		var courseSection = document.createElement("option");
+		var courseSect = slots[i];
+		var courseSectTxtNode = document.createTextNode(courseSect);
+		
+		courseSection.appendChild(courseSectTxtNode);
+		courseSection.setAttribute("value",courseSectTxtNode.data);
+		sectionSelect.appendChild(courseSection);
+	}
+}
+
+function getCourseInfoFromServer(stuNum){
+	
+	var url = "" + stuNum + ".json";
+	var request2 = new XMLHttpRequest();
+	request2.open("GET",url);
+	request2.onload = function() {
+		
+		if(request2.status == 200){
+			buildCourseTable(request2.responseText);
+			createRegistrationList();
 		}
 		else{
 			removeOldTable();
 		}
 	};
-	request.send(null);
+	request2.send(null);
 }
 
 function removeOldTable(){

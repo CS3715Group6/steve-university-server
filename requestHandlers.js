@@ -4,10 +4,18 @@
 
 var fs = require("fs");
 
-function registration(courseNum, sectNum){
+function registrationObj(courseNum, sectNum){
 	
 	this.courseSelect = courseNum;
 	this.sectionSelect = sectNum;
+}
+
+function courseCatalogue(cName, cNum, cRoom, cSlot){
+	
+	this.name = cName;
+	this.num = cNum;
+	this.room = cRoom;
+	this.slot = cSlot;
 }
 
 function start(response){
@@ -19,8 +27,128 @@ function start(response){
 	});
 }
 
-function post(response, postData){
+function events(response, postData){
 	
+	//Save event data to JSON file
+}
+
+function removeCourse(response, postData){
+	
+	var data = postData.split("&");	
+	var regInfo = [];
+	
+	for(var i = 0; i < data.length; i++){
+		
+		var split = data[i].split("=");
+		
+		while(split[1].includes("+")){
+			split[1] = split[1].replace("+", " ");
+		}
+		
+		regInfo.push(split[1]);
+	}
+	
+	var studentNum = regInfo[0];
+	var course = new courseCatalogue(regInfo[0], regInfo[1],regInfo[2],regInfo[3]);
+	
+	fs.readFile("Campus/courseData.json", 'utf8', function readFileCallback(err, data){
+	    if (err){
+
+	    } else {
+	    	var obj = [];
+	    	
+	    	if(Array.isArray(JSON.parse(data))){
+	    		obj = JSON.parse(data);
+	    	}
+	    	else {
+	    		obj = JSON.parse("[" + data + "]");
+	    	}
+		    
+	    	obj = obj.filter(function(el) {
+	    		var currObj = el.name + el.num + el.slot;
+	    		var testObj = course.name + course.num + course.slot
+	    	    return currObj !== testObj;
+	    	});
+ 
+		    var json = JSON.stringify(obj);
+		    fs.writeFile("Campus/courseData.json", json, 'utf8', function(){
+				console.log("Written to json file.");
+			});
+	    }
+	});
+	
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.write("The Course has been added to the catalogue. Please hit back on your browser to return to the previous page.");
+	response.end();
+}
+
+function addCourse(response, postData){
+	var data = postData.split("&");	
+	var regInfo = [];
+	
+	for(var i = 0; i < data.length; i++){
+		
+		var split = data[i].split("=");
+		
+		console.log("Split Data: " + split);
+		if(split[1].includes("+")){
+			split[1] = split[1].replace("+", " ");
+		}
+		
+		while(split[1].includes("+")){
+			split[1] = split[1].replace("+", " ");
+		}
+		
+		regInfo.push(split[1]);
+	}
+	
+	console.log(regInfo);
+//	
+//	for(var j = 0; j < regInfo.length; j++){
+//		
+//		console.log("RegInfo Data: " + regInfo[i]);
+//		while(regInfo[i].includes("+")){
+//			regInfo[i] = regInfo[i].replace("+", " ");
+//		}
+//	}
+	
+	var studentNum = regInfo[0];
+	var course = new courseCatalogue(regInfo[0], regInfo[1],regInfo[2],regInfo[3]);
+	
+	fs.readFile("Campus/courseData.json", 'utf8', function readFileCallback(err, data){
+	    if (err){
+	    	
+	    	var jso = [];
+	    	jso.push(JSON.stringify(course));
+	    	fs.writeFile("Campus/courseData.json", jso, 'utf8', function(){
+	    		console.log("Written to json file.");
+	    	});
+	    } else {
+	    	var obj = [];
+	    	
+	    	if(Array.isArray(JSON.parse(data))){
+	    		obj = JSON.parse(data);
+	    	}
+	    	else {
+	    		obj = JSON.parse("[" + data + "]");
+	    	}
+		    
+		    obj.push(course); 
+		    var json = JSON.stringify(obj);
+		    fs.writeFile("Campus/courseData.json", json, 'utf8', function(){
+				console.log("Written to json file.");
+			});
+	    }
+	});
+	
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.write("The Course has been added to the catalogue. Please hit back on your browser to return to the previous page.");
+	response.end();
+}
+
+function registration(response, postData){
+	
+	console.log("Registration Called");
 	var data = postData.split("&");	
 	var regInfo = [];
 	
@@ -36,7 +164,7 @@ function post(response, postData){
 	}
 	
 	var studentNum = regInfo[0];
-	var reg = new registration(regInfo[1],regInfo[2]);
+	var reg = new registrationObj(regInfo[1], regInfo[2]);
 	
 	fs.readFile(studentNum.toString() + ".json", 'utf8', function readFileCallback(err, data){
 	    if (err){
@@ -85,8 +213,10 @@ function serveFile(response, fileName, contentType){
 	});
 }
 
-
+exports.removeCourse = removeCourse;
+exports.addCourse = addCourse;
 exports.start = start;
-exports.post = post;
+exports.registration = registration;
+exports.events = events;
 exports.serveFile = serveFile;
 

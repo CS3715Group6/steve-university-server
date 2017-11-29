@@ -27,7 +27,7 @@
 			  <a href = "./Campus/southern.html">Southern Campus</a>
 			  <a href = "./Campus/stevedirections.html">Steve University Directions</a>
 			  <a href = "./student.html">Student</a>
-			  <a href = "./preCourses.html">Previous Courses</a>
+<!-- 			  <a href = "./preCourses.html">Previous Courses</a> -->
 		</nav>
 		
 		<div id="aside">
@@ -146,13 +146,15 @@
 					<p><textarea id="newEasternDescription" rows = "5" cols = "48"></textarea></p>
 					<p><input type = "button" id = "updateEasternDescription" value = "Update Campus Description"></p>
 				</fieldset>
+			</form>
+			<form action="/events" method="post">
 				<br>
 	        	<fieldset>
 	                <legend>Add Events</legend>
-	                <input type = "text" id = "eventday" size = "40" placeholder= "Day of week (lowercase)">
-	                <input type = "text" id = "eventtitle" size = "40" placeholder = "Event Title">
-	                <input type = "text" id = "eventdescription" size = "40" placeholder = "Event Description">
-	                <button id = "updateEvent"> Update Events</button>
+	                <input type = "text" id = "eventday" size = "40" placeholder= "Day of week (lowercase)" name="eday">
+	                <input type = "text" id = "eventtitle" size = "40" placeholder = "Event Title" name="eTitle">
+	                <input type = "text" id = "eventdescription" size = "40" placeholder = "Event Description" name="eDesc">
+	                <input type="submit" value="Update Events" id="updateBtn">
 	        	</fieldset>
 			</form>
 		</div>

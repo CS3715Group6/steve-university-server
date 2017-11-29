@@ -11,7 +11,7 @@ function init(){
 	//localStorage.clear();
 	
 	displayRegisteredCourses(); //registration.js
-	
+
 	var registerBtn = document.getElementById("registerBtn");
 	registerBtn.onclick = stuPageRegisterBtn; //registration.js
 }

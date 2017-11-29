@@ -8,9 +8,11 @@ var requestHandlers = require("./requestHandlers");
 
 var handle = {};
 handle["/"] = requestHandlers.start;
-handle["/post"] = requestHandlers.post;
+handle["/registration"] = requestHandlers.registration;
 handle["/.html"] = requestHandlers.serveFile;
-
+handle["/events"] = requestHandlers.events;
+handle["/addcourse"] = requestHandlers.addCourse;
+handle["/removecourse"] = requestHandlers.removeCourse;
 handle["/.css"] = requestHandlers.serveFile;
 handle["/.jpg"] = requestHandlers.serveFile;
 handle["/.js"] = requestHandlers.serveFile;
