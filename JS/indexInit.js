@@ -38,18 +38,18 @@ function init(){
 	
 	//the event update section
 	//get the event update button
-	var button = document.getElementById("updateEvent");
-	button.onclick = createNewEvent; //handler
+//	var button = document.getElementById("updateEvent");
+//	button.onclick = createNewEvent; //handler
+//	
+//	var eventArray = getEventArray(); //addEvent.js
+//	
+//	//ensure events are persistent with local storage
+//	for (var i = 0; i < eventArray.length; i++)
+//	{
+//		var key = eventArray[i];
+//		var eventObj = JSON.parse(localStorage.getItem(key));
+//		addEventToDom(key, eventObj);
+//	}
 	
-	var eventArray = getEventArray(); //addEvent.js
-	
-	//ensure events are persistent with local storage
-	for (var i = 0; i < eventArray.length; i++)
-	{
-		var key = eventArray[i];
-		var eventObj = JSON.parse(localStorage.getItem(key));
-		addEventToDom(key, eventObj);
-	}
-	
-	
+	getEventData(); //addEvents.js	
 }

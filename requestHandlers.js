@@ -18,8 +18,14 @@ function courseCatalogue(cName, cNum, cRoom, cSlot){
 	this.slot = cSlot;
 }
 
-function start(response){
-	
+function eventObj(eventDay, eventTitle, eventDescription)
+{
+	this.eventDay = eventDay;
+	this.eventTitle = eventTitle;
+	this.eventDescription = eventDescription;
+}
+
+function start(response){	
 	fs.readFile("index.html", function(err, data){
 		response.writeHead(200, {"Content-Type": "text/html"});
 		response.write(data);
@@ -27,10 +33,50 @@ function start(response){
 	});
 }
 
-function events(response, postData){
-	
+function events(response, postData){	
 	//Save event data to JSON file
 	//Also give a generic response
+	var data = postData.split("&");
+	var info = [];
+	for(var i = 0; i < data.length; i++)
+	{
+		var split = data[i].split("=");
+		console.log("Split Data: " + split);
+		
+		while(split[1].includes("+"))
+		{
+			split[1] = split[1].replace("+", " ");
+		}
+		info.push(split[1]);
+	}	
+	console.log("info without + sign: " + info);	
+	
+	var event = new eventObj(info[0], info[1],info[2]);
+	
+	fs.readFile("events.json", 'utf8', function(err, data){
+	    if (err){
+	    	
+	    } else {
+	    	var obj = [];
+	    	
+	    	if(Array.isArray(JSON.parse(data))){
+	    		obj = JSON.parse(data);
+	    	}
+	    	else {
+	    		obj = JSON.parse("[" + data + "]");
+	    	}
+		    
+		    obj.push(event); 
+		    var json = JSON.stringify(obj);
+		    fs.writeFile("events.json", json, 'utf8', function(){
+				console.log("Written to json file.");
+			});
+	    }
+	});
+	
+	response.writeHead(200, {"Content-Type": "text/plain"});
+	response.write("The event has been added to the sidebar. Please hit back on your browser to return to the previous page.");
+	response.end();
 }
 
 function removeCourse(response, postData){
@@ -150,6 +196,9 @@ function addCourse(response, postData){
 function registration(response, postData){
 	
 	console.log("Registration Called");
+	fs.writeFile(studentNum.toString() + ".json", jso, 'utf8', function(){
+		console.log("Written to json file.");
+	});
 	var data = postData.split("&");	
 	var regInfo = [];
 	

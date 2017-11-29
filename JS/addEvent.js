@@ -3,80 +3,69 @@
  * 
  * @author Ling
  */
+var events;
 
-function createNewEvent()
-{	
-	var eventArray = getEventArray();
-	var currentDate = new Date();
-	var eventDay = document.getElementById("eventday").value;
-	var eventTitle = document.getElementById("eventtitle").value;
-	var eventDescription = document.getElementById("eventdescription").value;
-	var key = "event_" + currentDate.getTime();
-	var eventObj = 
-	{
-		"day" : eventDay,
-		"title" : eventTitle,
-		"description" :	eventDescription
-	};
-	localStorage.setItem(key, JSON.stringify(eventObj));
-	eventArray.push(key);
-	localStorage.setItem("eventArray", JSON.stringify(eventArray));
-	AddEventToDom(key, eventObj);	
-}
-
-function addEventToDom(key, eventObj)
+function createEventSideBar(allEventEntries)
 {
-	var event = document.createElement("li");
-	var title = document.createElement("h4");
-	var description = document.createElement("p");
-	event.setAttribute("id", key);
-	var monday = document.getElementById("monday");
-	var tuesday = document.getElementById("tuesday");
-	var wednesday = document.getElementById("wednesday");	
-	var thursday = document.getElementById("thursday");
-	var friday = document.getElementById("friday");
+	for(var i=0; i<allEventEntries.length; i++)
+	{
+		var event = document.createElement("li");
+		var title = document.createElement("h4");
+		var description = document.createElement("p");
+		var monday = document.getElementById("monday");
+		var tuesday = document.getElementById("tuesday");
+		var wednesday = document.getElementById("wednesday");	
+		var thursday = document.getElementById("thursday");
+		var friday = document.getElementById("friday");
 		
-	title.innerHTML = eventObj.title;
-	description.innerHTML = eventObj.description;
-	event.appendChild(title);
-	event.appendChild(description);	
+		var entry = allEventEntries[i];
+		var entryData = Object.values(entry);
+		
+		title.innerHTML = entryData[1];
+		description.innerHTML = entryData[2];
+		event.appendChild(title);
+		event.appendChild(description);	
+		
+		if (entryData[0] == "Monday")
+		{
+			monday.appendChild(event);
+		}
+		else if (entryData[0] == "Tuesday")
+		{
+			tuesday.appendChild(event);
+		}
+		else if (entryData[0] == "Wednesday")
+		{
+			wednesday.appendChild(event);
+		}	
+		else if (entryData[0] == "Thursday")
+		{
+			thursday.appendChild(event);
+		}	
+		else 
+		{
+			friday.appendChild(event);
+		}					
+	}
+}
 	
-	if (eventObj.day == "monday")
-	{
-		monday.appendChild(event);
-	}
-	else if (eventObj.day == "tuesday")
-	{
-		tuesday.appendChild(event);
-	}
-	else if (eventObj.day == "wednesday")
-	{
-		wednesday.appendChild(event);
-	}	
-	else if (eventObj.day == "thursday")
-	{
-		thursday.appendChild(event);
-	}	
-	else 
-	{
-		friday.appendChild(event);
-	}	
+function getEventData()
+{
+	var url = "events.json";
+	var request = new XMLHttpRequest();
+	request.open("GET",url);
+	request.onload = function() 
+	{		
+		if(request.status == 200)
+		{
+			events = JSON.parse(request.responseText);
+			createEventSideBar(events);
+		}
+	};
+	request.send(null);
 }
 
-function getEventArray()
-{
-	var eventArray = localStorage.getItem("eventArray");
-	if (!eventArray)
-	{
-		eventArray = [];
-		localStorage.setItem("eventArray", JSON.stringify(eventArray));
-	}
-	else
-	{
-		eventArray = JSON.parse(eventArray);
-	}
-	return eventArray;
-}
+
 
 
 
