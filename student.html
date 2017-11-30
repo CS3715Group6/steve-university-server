@@ -38,35 +38,66 @@
 		<section id="register">
 			<h2>Register for a course</h2>
 			<form action="/registration" method="post">
-			<fieldset>
-				<legend>Course Registration</legend>
-				<br>
-				Select Student:
-				<select id="studentNumber" name="studentSelect" onchange="studentChanged()">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>	
-				</select>
-				<br>
-				Select Course:
-				<select id="courseNumber" name="courseSelect">
-		
-				</select>
-				
-				<select id="section" name="sectionSelect">
-
-				</select>
-				<br>
-				<input type="submit" value="Register" id="registerBtn">
-				<br>
-			</fieldset>
+				<fieldset>
+					<legend>Course Registration</legend>
+					<br>
+					Select Student:
+					<select id="studentNumber" name="studentSelect" onchange="studentChanged()">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>	
+					</select>
+					<br>
+					Select Course:
+					<select id="courseNumber" name="courseSelect">
+			
+					</select>
+					
+					<select id="section" name="sectionSelect">
+	
+					</select>
+					<br>
+					<input type="submit" value="Register" id="registerBtn">
+					<br>
+				</fieldset>
+			</form>
+			<form action="/unregistered" method="post">
+				<fieldset>
+					<legend>Drop Course</legend>
+					<br>
+					Select Student:
+					<select id="studentNumber" name="studentSelect" onchange="studentChanged()">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>	
+					</select>
+					<br>
+					Select Course:
+					<select id="courseNumberDrop" name="courseSelect">
+			
+					</select>
+					
+					<select id="sectionDrop" name="sectionSelect">
+	
+					</select>
+					<br>
+					<input type="submit" value="Drop" id="registerBtn">
+					<br>
+				</fieldset>
 			</form>
 		</section>		
 		

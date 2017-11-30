@@ -35,18 +35,22 @@ function createRegistrationList(){
 function createRegList(cEntries){ 
 	
 	var courseSelect = document.getElementById("courseNumber");
+	var courseDrop = document.getElementById("courseNumberDrop");
 	
 	while(courseSelect.hasChildNodes()){
 		courseSelect.removeChild(courseSelect.lastChild);
+	}
+	while(courseDrop.hasChildNodes()){
+		courseDrop.removeChild(courseDrop.lastChild);
 	}
 	
 	//Get all courses with no duplicates
 	var coursesNoDupes = [];
 	for(var i = 0; i < cEntries.length; i++){
 		
-		var courseNum = cEntries[i].num;
-		if(!coursesNoDupes.includes(courseNum)){
-			coursesNoDupes.push(courseNum);
+		var num = cEntries[i].num;
+		if(!coursesNoDupes.includes(num)){
+			coursesNoDupes.push(num);
 		}
 	}
 	
@@ -62,6 +66,16 @@ function createRegList(cEntries){
 		courseSelect.appendChild(courseOption);
 	}
 	
+	for(var j = 0; j < coursesNoDupes.length; j++){
+		var courseOptionD = document.createElement("option");
+		var courseNumD = coursesNoDupes[j];
+		var courseTxtNodeD = document.createTextNode(courseNumD);
+		
+		courseOptionD.appendChild(courseTxtNodeD);
+		courseOptionD.setAttribute("value", courseTxtNodeD.data);
+		courseDrop.appendChild(courseOptionD);
+	}
+	
 	generateSlots(cEntries);
 }
 
@@ -69,14 +83,17 @@ function createRegList(cEntries){
 function generateSlots(cEntries){
 	
 	var sectionSelect = document.getElementById("section");
+	var sectionSelectDrop = document.getElementById("sectionDrop");
+	
 	while(sectionSelect.hasChildNodes()){
 		sectionSelect.removeChild(sectionSelect.lastChild);
+	}
+	while(sectionSelectDrop.hasChildNodes()){
+		sectionSelectDrop.removeChild(sectionSelectDrop.lastChild);
 	}
 	
 	var courseSelect = document.getElementById("courseNumber");
 	var selCourse = courseSelect.value;
-	//var catalogueEntries = getSortedCatalogueEntries(getCatalogueArray());
-	//var catalogueEntries = getCourseData();
 	var slots = []
 	
 	//Find all the slots for the selected course
@@ -98,9 +115,21 @@ function generateSlots(cEntries){
 		courseSection.setAttribute("value",courseSectTxtNode.data);
 		sectionSelect.appendChild(courseSection);
 	}
+	
+	for(var i = 0; i < slots.length; i++){
+		var courseSectionD = document.createElement("option");
+		var courseSectD = slots[i];
+		var courseSectTxtNodeD = document.createTextNode(courseSectD);
+		
+		courseSectionD.appendChild(courseSectTxtNodeD);
+		courseSectionD.setAttribute("value",courseSectTxtNodeD.data);
+		sectionSelectDrop.appendChild(courseSectionD);
+	}
 }
 
 function getCourseInfoFromServer(stuNum){
+	
+	createRegistrationList();
 	
 	var url = "" + stuNum + ".json";
 	var request2 = new XMLHttpRequest();
@@ -109,7 +138,7 @@ function getCourseInfoFromServer(stuNum){
 		
 		if(request2.status == 200){
 			buildCourseTable(request2.responseText);
-			createRegistrationList();
+			//createRegistrationList();
 		}
 		else{
 			removeOldTable();

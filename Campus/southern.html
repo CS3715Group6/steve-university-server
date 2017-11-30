@@ -50,57 +50,70 @@
 				<br>
 			</fieldset>
 		</form>
-	</section>
-		<br>
-	<section id="register">
-		<h2>Register for a course</h2>
-		<form action="/registration" method="post">
+		<form id="removeCatalogue" action="/removecourse" method="post">
 			<fieldset>
-				<legend>Course Registration</legend>
+				<legend>Remove Course From Catalogue</legend>
+				<input type = "text" id = "cNamer" size = "40" placeholder= "Course Name" name="coName">
+                <input type = "text" id = "cNumr" size = "40" placeholder = "Course Number" name="coNum">
+                <input type = "text" id = "cRoomr" size = "40" placeholder = "Room Number" name="coRoom">
+                <input type = "text" id = "cSlotr" size = "40" placeholder= "Time Slot" name="coSlot">			
 				<br>
-				Select Student:
-				<select id="studentNumber" name="studentSelect">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
-					<option value="6">6</option>
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="10">10</option>	
-				</select>
-				<br>
-				Select Course:
-				<select id="courseNumber" name="courseSelect">
-					<option value="Math 1001">Math 1001</option>
-					<option value="Math 1021">Math 1021</option>
-					<option value="Comp 1041">Comp 1041</option>
-					<option value="Math 1070">Math 1070</option>
-					<option value="Math 1080">Math 1080</option>
-					<option value="CS 1000">CS 1000</option>
-					<option value="CS 1020">CS 1020</option>
-					<option value="CS 1400">CS 1400</option>
-					<option value="BIO 101">BIO 101</option>
-					<option value="BIO 301">BIO 301</option>
-					<option value="BIO 401">BIO 401</option>
-					<option value="G 1020">G 1020</option>
-					<option value="G 101">G 101</option>
-					<option value="G 302">G 302</option>		
-				</select>
-				
-				<select id="section" name="sectionSelect">
-					<option value="Section 001">Section 001</option>
-					<option value="Section 002">Section 002</option>
-					<option value="Section 003">Section 003</option>
-				</select>
-				<br>
-				<input type="submit" value="Register" id="registerBtn">
+				<input type="submit" value="Remove" id="catalogueRemoveBtn">
+<!-- 				<input type="button" value="Remove" id="removeBtn"> -->
 				<br>
 			</fieldset>
 		</form>
 	</section>
+		<br>
+<!-- 	<section id="register"> -->
+<!-- 		<h2>Register for a course</h2> -->
+<!-- 		<form action="/registration" method="post"> -->
+<!-- 			<fieldset> -->
+<!-- 				<legend>Course Registration</legend> -->
+<!-- 				<br> -->
+<!-- 				Select Student: -->
+<!-- 				<select id="studentNumber" name="studentSelect"> -->
+<!-- 					<option value="1">1</option> -->
+<!-- 					<option value="2">2</option> -->
+<!-- 					<option value="3">3</option> -->
+<!-- 					<option value="4">4</option> -->
+<!-- 					<option value="5">5</option> -->
+<!-- 					<option value="6">6</option> -->
+<!-- 					<option value="7">7</option> -->
+<!-- 					<option value="8">8</option> -->
+<!-- 					<option value="9">9</option> -->
+<!-- 					<option value="10">10</option>	 -->
+<!-- 				</select> -->
+<!-- 				<br> -->
+<!-- 				Select Course: -->
+<!-- 				<select id="courseNumber" name="courseSelect"> -->
+<!-- 					<option value="Math 1001">Math 1001</option> -->
+<!-- 					<option value="Math 1021">Math 1021</option> -->
+<!-- 					<option value="Comp 1041">Comp 1041</option> -->
+<!-- 					<option value="Math 1070">Math 1070</option> -->
+<!-- 					<option value="Math 1080">Math 1080</option> -->
+<!-- 					<option value="CS 1000">CS 1000</option> -->
+<!-- 					<option value="CS 1020">CS 1020</option> -->
+<!-- 					<option value="CS 1400">CS 1400</option> -->
+<!-- 					<option value="BIO 101">BIO 101</option> -->
+<!-- 					<option value="BIO 301">BIO 301</option> -->
+<!-- 					<option value="BIO 401">BIO 401</option> -->
+<!-- 					<option value="G 1020">G 1020</option> -->
+<!-- 					<option value="G 101">G 101</option> -->
+<!-- 					<option value="G 302">G 302</option>		 -->
+<!-- 				</select> -->
+				
+<!-- 				<select id="section" name="sectionSelect"> -->
+<!-- 					<option value="Section 001">Section 001</option> -->
+<!-- 					<option value="Section 002">Section 002</option> -->
+<!-- 					<option value="Section 003">Section 003</option> -->
+<!-- 				</select> -->
+<!-- 				<br> -->
+<!-- 				<input type="submit" value="Register" id="registerBtn"> -->
+<!-- 				<br> -->
+<!-- 			</fieldset> -->
+<!-- 		</form> -->
+<!-- 	</section> -->
 	
 	<footer>
 		<p>

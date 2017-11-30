@@ -9,6 +9,7 @@ var requestHandlers = require("./requestHandlers");
 var handle = {};
 handle["/"] = requestHandlers.start;
 handle["/registration"] = requestHandlers.registration;
+handle["/unregistered"] = requestHandlers.unregistered;
 handle["/.html"] = requestHandlers.serveFile;
 handle["/events"] = requestHandlers.events;
 handle["/addcourse"] = requestHandlers.addCourse;
